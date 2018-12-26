@@ -8,7 +8,11 @@ using namespace std;
 class Alphabet {
     deque<string> standard = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 
-    public:
+    public: 
+
+    deque<string> getStandard() { 
+      return standard;
+    }
 
     deque<string> cipherLetters(string keyword) {
       
@@ -32,18 +36,6 @@ class Alphabet {
         letters.push_front(f);
       }
 
-      for(auto f : letters) {
-        cout << f << endl;
-      }
-
       return letters;
     }
 };
-
-int main() { 
-  Alphabet a;
-
-  a.cipherLetters("adam");
-
-  return 0;
-}
