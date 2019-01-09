@@ -1,9 +1,9 @@
 all: cipher.o
-	g++ -std=c++11 cipher.o -o cipher
-	./cipher
+	g++ -std=c++11 interface.o -o ui
+	./ui
 
-cipher.o: cipher.cpp alphabet.h
-	g++ -std=c++11 -c cipher.cpp
+cipher.o: interface.cpp cipher.h alphabet.h
+	g++ -std=c++11 -c interface.cpp
 
 clean:
-	rm *.o
+	rm *.o *.out *ui
