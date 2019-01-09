@@ -13,9 +13,9 @@ class Cipher {
 
   string decipheredText;
 
-  deque<string> regAlphabet;
+  deque<char> regAlphabet;
 
-  deque<string> encipheredAlphabet; 
+  deque<char> encipheredAlphabet; 
 
     static bool is_punctuation (char c) {
       return c ==  '.' || c == ',' || c == '!' || c == '\''|| c == '?' || c == ' ';
@@ -31,14 +31,22 @@ class Cipher {
     // all punctuation omitted
 
     text.erase( remove_if(text.begin(), text.end(), is_punctuation), text.end() );
-    
-    string::iterator it;
-    for (it = text.begin(); it != text.end(); it++) {
-      *it = tolower(*it);
-      deque<string>::iterator pos;
-      pos = find (regAlphabet.begin(), regAlphabet.end(), *it);
-      *it = encipheredAlphabet[pos];
+
+    for (auto & f: text) {
+      f = tolower(f);
+      deque<char>::iterator pos;
+      pos = find (regAlphabet.begin(), regAlphabet.end(), f);
+      int index = distance(regAlphabet.begin(), pos);
+      f = encipheredAlphabet[index];
     }
+    
+    // string::iterator it;
+    // for (it = text.begin(); it != text.end(); ++it) {
+    //   *it = tolower(*it);
+    //   deque<string>::iterator pos;
+    //   pos = find (regAlphabet.begin(), regAlphabet.end(), *it);
+    //   *it = encipheredAlphabet[pos];
+    // }
 
     return text;
   }
@@ -55,7 +63,7 @@ int main() {
 
   Alphabet a;  
 
-  deque<string> encipheredAlpha = a.cipherLetters(c.keyword); 
+  deque<char> encipheredAlpha = a.cipherLetters(c.keyword); 
 
   for (auto f : encipheredAlpha) { 
         cout << f;
@@ -67,7 +75,7 @@ int main() {
 
   string encipheredText = c.encipher(c.decipheredText); 
 
-  for (auto f: encipheredText) { 
+  for (auto f: encipheredText) {
     cout << f;
   }
 
